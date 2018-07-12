@@ -152,8 +152,10 @@ void RemoteBlockReader::checkResponse() {
         break;
 
     case ChecksumTypeProto::CHECKSUM_CRC32:
-        THROW(HdfsIOException, "RemoteBlockReader does not support CRC32 checksum, Block: %s, from Datanode: %s",
-              binfo.toString().c_str(), datanode.formatAddress().c_str());
+        // THROW(HdfsIOException, "RemoteBlockReader does not support CRC32 checksum, Block: %s, from Datanode: %s",
+        //       binfo.toString().c_str(), datanode.formatAddress().c_str());
+        checksum = shared_ptr<Checksum>(new Crc32());
+        checksumSize = sizeof(int32_t);
         break;
 
     case ChecksumTypeProto::CHECKSUM_CRC32C:

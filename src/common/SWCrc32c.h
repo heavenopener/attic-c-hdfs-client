@@ -98,5 +98,31 @@ private:
 }
 }
 #endif
+namespace Hdfs {
+namespace Internal {
+class Crc32: public Checksum {
+public:
+    Crc32() :
+        crc(0xFFFFFFFF) {
+    }
+
+    uint32_t getValue() {
+        return ~crc;
+    }
+
+    void reset() {
+        crc = 0xFFFFFFFF;
+    }
+
+    void update(const void * b, int len);
+
+    ~Crc32() {
+    }
+
+private:
+    uint32_t crc;
+};
+}
+}
 
 #endif /* _HDFS_LIBHDFS3_COMMON_SWCRC32C_H_ */
