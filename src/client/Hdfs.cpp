@@ -352,7 +352,7 @@ hdfsFS hdfsConnectAsUser(const char * host, tPort port, const char * user) {
     hdfsBuilderSetNameNodePort(bld, port);
     hdfsBuilderSetUserName(bld, user);
     retVal = hdfsBuilderConnect(bld);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     return retVal;
 }
 
@@ -368,7 +368,7 @@ hdfsFS hdfsConnect(const char * host, tPort port) {
     hdfsBuilderSetNameNode(bld, host);
     hdfsBuilderSetNameNodePort(bld, port);
     retVal = hdfsBuilderConnect(bld);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     return retVal;
 }
 
@@ -388,7 +388,7 @@ hdfsFS hdfsConnectAsUserNewInstance(const char * host, tPort port,
     hdfsBuilderSetForceNewInstance(bld);
     hdfsBuilderSetUserName(bld, user);
     retVal = hdfsBuilderConnect(bld);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     return retVal;
 }
 
@@ -405,7 +405,7 @@ hdfsFS hdfsConnectNewInstance(const char * host, tPort port) {
     hdfsBuilderSetNameNodePort(bld, port);
     hdfsBuilderSetForceNewInstance(bld);
     retVal = hdfsBuilderConnect(bld);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     return retVal;
 }
 
@@ -517,7 +517,7 @@ struct hdfsBuilder * hdfsNewBuilder(void) {
     return NULL;
 }
 
-void hdfsFreeBuilder(struct hdfsBuilder * bld) {
+void hdfsFreeBuilderV2(struct hdfsBuilder * bld) {
     delete bld;
 }
 

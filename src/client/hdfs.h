@@ -236,7 +236,7 @@ void hdfsBuilderSetToken(struct hdfsBuilder * bld, const char * token);
  *
  * @param bld The HDFS builder
  */
-void hdfsFreeBuilder(struct hdfsBuilder * bld);
+void hdfsFreeBuilderV2(struct hdfsBuilder * bld);
 
 /**
  * Set a configuration string for an HdfsBuilder.

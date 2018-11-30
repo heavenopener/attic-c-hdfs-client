@@ -188,7 +188,7 @@ TEST(TestCInterfaceConnect, TestConnect_Success) {
     fs = hdfsBuilderConnect(bld);
     ASSERT_TRUE(fs != NULL);
     ASSERT_EQ(hdfsDisconnect(fs), 0);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     std::string host;
     int port;
     ASSERT_EQ(0, hdfsConfGetStr("dfs.default.uri", &uri));
@@ -229,7 +229,7 @@ public:
 
         hdfsBuilderSetUserName(bld, HDFS_SUPERUSER);
         superfs = hdfsBuilderConnect(bld);
-        hdfsFreeBuilder(bld);
+        hdfsFreeBuilderV2(bld);
 
         if (superfs == NULL) {
             throw std::runtime_error("cannot connect hdfs");
@@ -520,7 +520,7 @@ TEST_F(TestCInterface, TestFileSeek_Success) {
     hdfsBuilderConfSetStr(bld, "dfs.client.read.shortcircuit", "false");
     hdfsBuilderSetForceNewInstance(bld);
     hdfsFS newfs = hdfsBuilderConnect(bld);
-    hdfsFreeBuilder(bld);
+    hdfsFreeBuilderV2(bld);
     ASSERT_TRUE(newfs != NULL);
     TestSeek(newfs);
     hdfsDisconnect(newfs);

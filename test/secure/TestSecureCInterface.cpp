@@ -128,7 +128,7 @@ public:
         const char * userCCpath = GetEnv("LIBHDFS3_TEST_USER_CCPATH", ss.str().c_str());
         hdfsBuilderSetKerbTicketCachePath(bld, userCCpath);
         fs = hdfsBuilderConnect(bld);
-        hdfsFreeBuilder(bld);
+        hdfsFreeBuilderV2(bld);
 
         if (fs == NULL) {
             throw std::runtime_error("cannot connect hdfs");
